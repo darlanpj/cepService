@@ -1,7 +1,8 @@
-package user.contato;
+package user.contato.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.springframework.data.annotation.Id;
+import user.contato.Exception.InvalidCepException;
 
 import java.io.Serializable;
 
@@ -64,7 +65,7 @@ public class Address implements Serializable{
      * @param cep CEP
      * @throws InvalidCepException Caso o CEP seja inválido
      */
-    public static void validateCep(String cep) throws InvalidCepException{
+    public static void validateCep(String cep) throws InvalidCepException {
         if(cep==null || !cep.matches("[0-9]{8}")){
             throw new InvalidCepException(cep);
         }

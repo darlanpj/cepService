@@ -7,16 +7,12 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Import;
-import org.springframework.data.mongodb.core.mapping.event.ValidatingMongoEventListener;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
-import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 import org.springframework.web.client.RestTemplate;
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.service.ApiInfo;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
-
-import javax.validation.Validator;
 
 @EnableAutoConfiguration
 @ComponentScan
@@ -37,7 +33,7 @@ public class AddressServiceApplication {
 	ApiInfo apiInfo() {
 		return new ApiInfoBuilder()
 				.title("CeService API")
-				.description("This system provide services to Cep Service)
+				.description("This system provide services to Cep Service")
 				.version("1.0")
 				.build();
 	}
@@ -49,18 +45,5 @@ public class AddressServiceApplication {
 	}
 
 
-	@Bean
-	public Validator createValidatorFactory() {
-		return new LocalValidatorFactoryBean();
-	}
 
-	@Bean
-	public Validation getValidation() {
-		return new Validation();
-	}
-
-	@Bean
-	public ValidatingMongoEventListener validatingMongoEventListener() {
-		return new ValidatingMongoEventListener(createValidatorFactory());
-	}
 }
